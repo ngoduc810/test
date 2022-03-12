@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import styled from 'styled-components';
+import NewTask from './components/NewTask';
+import TodoList from './components/TodoList';
+import { useState } from 'react';
+import { stateContext } from './components/Context.js';
 
 function App() {
+  const [state, setState] = useState(() => JSON.parse(localStorage.getItem('item')) ?? [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Component>
+      <stateContext.Provider value={{state, setState}}>
+        <NewTask />
+        <TodoList />
+      </stateContext.Provider>
+    </Component>
   );
 }
 
+const Component = styled.div`
+  width: 1200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 40px auto;
+  border: 1px solid black;
+`
+
 export default App;
+
+  // const stateContext = useContext()
+  // const [list, setList] = useState(() => JSON.parse(localStorage.getItem('item')) ?? [])
+  // console.log(list);
