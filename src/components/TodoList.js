@@ -58,7 +58,7 @@ function TodoList() {
         setEditPiority(newList);
     }
     const handerEdited = (index) => {
-        const newJob = {job: editName[index], desc: editDesc[index], chooseDate: editDate[index], piority: editPiority[index]}
+        const newJob = {job: editName[index], desc: editDesc[index], chooseDate: editDate[index], piority: editPiority[index], isCompleted: check[index]}
         setState( prev => {
             const newList = [...prev];
             newList.splice(index, 1, newJob);
